@@ -1,0 +1,32 @@
+<section class="productCarouselSection">
+  <h2>Our products</h2>
+  {% if collections['frontpage'].products.size > 0 %}
+    <div class="carouselWrapper">
+      <button class="prevBtn">‹</button>
+      <div class="carouselContainer">
+       {% for product in collections['frontpage'].products %}
+ <div class="carouselItem">
+  <a href="{{ routes.collections_url }}/all">
+    <div class="productTop">
+      <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+      <h3>{{ product.title }}</h3>
+    </div>
+    
+    <div class="productBottom">
+      <p class="productPrice">{{ product.price | money_without_trailing_zeros }}</p>
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        <button type="submit" class="AddToCart">Add to Cart</button>
+      </form>
+    </div>
+  </a>
+</div>
+{% endfor %}
+
+      </div>
+      <button class="nextBtn">›</button>
+    </div>
+  {% else %}
+    <p>No products found. Check collection handle.</p>
+  {% endif %}
+</section>

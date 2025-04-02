@@ -1,0 +1,70 @@
+<section class="imageSection">
+  <div class="gridContainer">
+    {% for block in section.blocks %}
+      <div class="gridItem">
+        <div class="imageWrapper" style="padding-bottom: {{ section.settings.aspect_ratio }}%">
+          {{ block.settings.image | image_url: width: 500 | image_tag:
+            loading: 'lazy',
+            widths: '300, 500, 700',
+            class: 'grid-image',
+            alt: block.settings.caption | default: "Collection image"
+          }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image Grid",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "range",
+      "id": "aspect_ratio",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Aspect Ratio",
+      "default": 80,
+      "info": "Width to height ratio (100% = square)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Grid Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Choose Image",
+          "info": "Recommended size: 1000x800px"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (optional)",
+          "info": "Appears in alt text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Grid",
+      "category": "Image",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,38 @@
+<html>
+<head>
+{{content_for_header}}
+{{ 'style.css' | asset_url | stylesheet_tag }}
+</head>
+<body>
+<header class="headerWrapper">
+<div class="header">
+    <div class="logo">
+      <a href="{{ routes.root_url }}">
+        <img src="{{ 'Apple.png' | asset_url }}" alt="Logo">
+      </a>
+    </div>
+
+    <nav class="nav">
+      <ul> 
+        <li><a href="#">About Us</a></li>
+        <li><a href="/collections/all">Products</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="cartWrapper">
+     <a href="{{ routes.cart_url }}" class="cart-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+    <circle cx="9" cy="21" r="1"></circle>
+    <circle cx="20" cy="21" r="1"></circle>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+  </svg>
+  <span class="cart-count">{{ cart.item_count }}</span>
+</a>
+  </div>
+  </div>
+</header>
+{{content_for_layout}}
+{{ 'script.js' | asset_url | script_tag }}
+</body>
+</html>

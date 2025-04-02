@@ -1,0 +1,26 @@
+<section class="collectionWrapper">
+  <aside class="filterSidebar">
+    <h3>Sort By Price</h3>
+    <select id="sortPrice">
+      <option value="{{ collection.url }}">Default</option>
+      <option value="{{ collection.url }}?sort_by=price-ascending">Lowest to Highest</option>
+      <option value="{{ collection.url }}?sort_by=price-descending">Highest to Lowest</option>
+    </select>
+  </aside>
+
+  <div class="collectionGrid">
+    {% for product in collection.products %}
+      <div class="productCard">
+        <a href="{{ product.url }}">
+          <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+        </a>
+        <h3>{{ product.title }}</h3>
+        <p>${{ product.price | money_without_trailing_zeros }}</p>
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          <button type="submit" class="AddToCart">Add to Cart</button>
+        </form>
+      </div>
+    {% endfor %}
+  </div>
+</section>

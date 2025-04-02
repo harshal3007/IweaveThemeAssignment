@@ -1,0 +1,46 @@
+<section class="heroSection">
+  <div class="heroHeadingWrapper">
+    <h1>{{ section.settings.hero_heading }}</h1>
+    <p>{{ section.settings.hero_subheading }}</p>
+    <a href="/collections/all" class="btn">{{ section.settings.button_text }}</a>
+  </div>
+  <div class="heroImage">
+    <img src="{{ 'heroBG.jpeg' | asset_url }}" alt="Hero Image">
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Heading",
+      "default": "Apple Intelligence is here."
+    },
+    {
+      "type": "text",
+      "id": "hero_subheading",
+      "label": "Subheading",
+      "default": "Experience it now on the latest iPhone, iPad, and Mac models with a fresh software update."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Buy Now"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section"
+    }
+  ]
+}
+{% endschema %}
